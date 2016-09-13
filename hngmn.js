@@ -6,7 +6,9 @@ var guessDict;
 var drawingInstructions;
 
 var guessButton;
-var resetButton
+var resetButton;
+
+var wrongLetters;
 
 function preload(){
   words = loadStrings("words.txt");
@@ -32,6 +34,7 @@ function checkLose(){
 function reset(){
   guessesLeft = 6;
   currentWord = chooseWord();
+  wrongLetters = [];
   guessDict = {};
   for (var i = 0; i < currentWord.length; i++){
       guessDict[currentWord.charAt(i)] = false;
@@ -57,7 +60,8 @@ function setup(){
          if (currentWord.indexOf(char) >= 0){
              guessDict[char] = true;
          } else {
-             guessDict[char] = true;         
+             guessDict[char] = true;
+             wrongLetters.push(char);
              this.guessesLeft--;   
          }
         }
@@ -88,6 +92,15 @@ function draw(){
         text("_", 100 + 26 * i, 590);
       }
   }
+  
+  textSize(12);
+  textAlign(CENTER);
+  text("Incorrect guesses:", 50, 50);
+  fill(255, 0, 0);
+  for (var i = 0; i < wrongLetters.length; i++){
+      text(wrongLetters[i], 50 + 12 * i, 70);
+  }
+  
   if (checkWin()){
       fill(0, 255, 0);
       textSize(26);
