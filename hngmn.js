@@ -49,7 +49,7 @@ function setup(){
   var canvas = createCanvas(800, 600).parent('canvasHere');
   var input = select("#input");
   var guessButton = createButton("guess").parent("submit").mousePressed(function(){
-    var char = input.value();
+    var char = input.value().toLowerCase();
     if (char.length > 0){
         if (! guessDict[char]){
          if (currentWord.indexOf(char) >= 0){
