@@ -2,13 +2,13 @@ var words;
 var currentWord;
 var guessesLeft;
 var guessDict;
-
+var wrongLetters;
 var drawingInstructions;
 
 var guessButton;
 var resetButton;
 
-var wrongLetters;
+
 
 function preload(){
   words = loadStrings("words.txt");
@@ -39,6 +39,7 @@ function reset(){
   for (var i = 0; i < currentWord.length; i++){
       guessDict[currentWord.charAt(i)] = false;
   }
+  select("#input").value("");
 }
 
 function setup(){
@@ -65,6 +66,7 @@ function setup(){
              this.guessesLeft--;   
          }
         }
+        select("#input").value("");
      }
   }.bind(this));
   resetButton = createButton("reset").parent("reset").mousePressed(function(){ 
