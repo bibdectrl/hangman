@@ -94,6 +94,10 @@ function draw(){
   if (checkLose()){
       fill(255, 0, 0);
       textSize(26);
+      textAlign(LEFT);
       text("You lose!", 600, 580);
+      fill(0);
+      textAlign(CENTER);
+      text(currentWord, 380, 480);
   }
 }
